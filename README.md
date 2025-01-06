@@ -1,7 +1,8 @@
 # NetFlix GPT
 - create react app
 - configure tailwindcss
-
+- Header
+ - Login Form
 
 # Features
  - Login/Signup Form
