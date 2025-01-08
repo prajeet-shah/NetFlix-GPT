@@ -2,7 +2,15 @@
 - create react app
 - configure tailwindcss
 - Header
+- Routing 
  - Login Form
+ - Sign up Form
+ - Form validation
+ - firebase setup 
+ - firebase deploy app to production
+ - created sign Up Account
+ - Implement Sign In user api
+ - created Redux store
 
 # Features
  - Login/Signup Form
