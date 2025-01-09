@@ -11,6 +11,11 @@
  - created sign Up Account
  - Implement Sign In user api
  - created Redux store
+ - BugFix:- when user Sign Up, it won't update the displayName and photoURL
+ - BugFix:- it went to browse page without Sign In and login page without Sign Out.
+ - unsubscribe to onAuthStateChanged when it unmounts
+ - constants URL puts in one constants.js file
+ 
 
 # Features
  - Login/Signup Form

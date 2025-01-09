@@ -3,18 +3,19 @@ import Header from "./Header";
 import { Validate } from "../utils/Validate";
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword, updateProfile
+  signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { USER_ICON } from "../utils/constants";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [message, setMessage] = useState(null);
-  const navigate = useNavigate();
-  const dispatch = useDispatch()
+
+  const dispatch = useDispatch();
 
   const email = useRef(null);
   const password = useRef(null);
@@ -42,29 +43,29 @@ const Login = () => {
 
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL: "https://avatars.githubusercontent.com/u/121827745?v=4",
+            photoURL: USER_ICON,
           })
             .then(() => {
-                const { uid, email, password, displayName, photoURL } = auth.currentUser;
-                console.log(auth)
-                      
-                        dispatch(
-                          addUser({
-                            uid: uid,
-                            email: email,
-                            password: password,
-                            displayName: displayName,
-                            photoURL: photoURL,
-                          })
-                        );
+              const { uid, email, password, displayName, photoURL } =
+                auth.currentUser;
+              console.log(auth);
 
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  password: password,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
             })
             .catch((error) => {
               // An error occurred
               // ...
             });
           // console.log(user);
-          navigate("/browse");
+
           // ...
         })
         .catch((error) => {
@@ -84,7 +85,7 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log("sign In success");
-          navigate("/browse");
+
           // ...
         })
         .catch((error) => {
