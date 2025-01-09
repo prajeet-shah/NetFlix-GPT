@@ -3,18 +3,22 @@ import Header from "./Header";
 import { Validate } from "../utils/Validate";
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
+  signInWithEmailAndPassword, updateProfile
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const email = useRef(null);
   const password = useRef(null);
+  const name = useRef(null);
 
   const handleButtonClick = () => {
     // validate the form
@@ -29,11 +33,36 @@ const Login = () => {
       createUserWithEmailAndPassword(
         auth,
         email.current.value,
-        password.current.value
+        password.current.value,
+        name.current.value
       )
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
+
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL: "https://avatars.githubusercontent.com/u/121827745?v=4",
+          })
+            .then(() => {
+                const { uid, email, password, displayName, photoURL } = auth.currentUser;
+                console.log(auth)
+                      
+                        dispatch(
+                          addUser({
+                            uid: uid,
+                            email: email,
+                            password: password,
+                            displayName: displayName,
+                            photoURL: photoURL,
+                          })
+                        );
+
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+            });
           // console.log(user);
           navigate("/browse");
           // ...
@@ -92,6 +121,7 @@ const Login = () => {
 
         {!isSignInForm && (
           <input
+            ref={name}
             type="text"
             placeholder="Full Name"
             className="p-3 mx-2 my-4 w-full text-xl bg-gray-700 text-white placeholder-black rounded-lg"
