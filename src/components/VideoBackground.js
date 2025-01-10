@@ -8,12 +8,12 @@ const VideoBackground = ({ movieId }) => {
   if (!trailer) return;
 
   return (
-    <div>
+    <div className="w-screen aspect-video">
       <iframe
-        width="560"
-        height="315"
-        src={`https://www.youtube.com/embed/${trailer.key}?si=A4Y9Y9o2wohfP_-m`}
-        title="YouTube video player"
+        className="w-screen w-full h-full bg-gradient-to-r from-black to-transparent "
+        src={`https://www.youtube.com/embed/${trailer.key}?si=A4Y9Y9o2wohfP_-m&autoplay=1&mute=1&controls=0&modestbranding=1&showinfo=0&disablekb=1&rel=0&iv_load_policy=3`}
+        frameBorder="0"
+        
       ></iframe>
     </div>
   );

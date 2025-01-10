@@ -1,64 +1,53 @@
 # NetFlix GPT
+
 - create react app
 - configure tailwindcss
 - Header
-- Routing 
- - Login Form
- - Sign up Form
- - Form validation
- - firebase setup 
- - firebase deploy app to production
- - created sign Up Account
- - Implement Sign In user api
- - created Redux store
- - Implemented Sign out
- - Update profile 
- - BugFix:- when user Sign Up, it won't update the displayName and photoURL
- - BugFix:- if user not logged In then redirect /browse page to login and login page and vice-versa.
- - unsubscribe to onAuthStateChanged when it unmounts
- - constants URL puts in one constants.js file
- 
+- Routing
+- Login Form
+- Sign up Form
+- Form validation
+- firebase setup
+- firebase deploy app to production
+- created sign Up Account
+- Implement Sign In user api
+- created Redux store
+- Implemented Sign out
+- Update profile
+- BugFix:- when user Sign Up, it won't update the displayName and photoURL
+- BugFix:- if user not logged In then redirect /browse page to login and login page and vice-versa.
+- unsubscribe to onAuthStateChanged when it unmounts
+- constants URL puts in one constants.js file
+- Register TMDB API now playing movies list API
+- Custom Hook for Now Playing Movies
+- Created movieslice
+- update the store with movies data
+- planning for MainContainer and Secondary container
+- Fetch DAta fro Trailer video
+- update store with trailer video Data
+- Embedded the youtube and make it autoplay and mute
+- Tailwind Classes to make MainContainer look awesome
+- Build secondary component
+- created MovieList
+- build Moviecard
+- TMDB image CDN URL
+- made the browser page amazing with tailwind css
+- created useplayingNOw , usepopularMovies, useTopRatedMovies, useUpcomingMovies custom hook
 
 # Features
- - Login/Signup Form
-  - redirect to Browse page
+
+- Login/Signup Form
+- redirect to Browse page
 - Browse(after authentication)
   - Header
   - Main Movie
-   - Tailer in Background
-   - Title & Description
-   - Movie Suggestions
-   - Movielists * N
+  - Tailer in Background
+  - Title & Description
+  - Movie Suggestions
+  - Movielists \* N
 - NetFlix GPT
 - Search Bar
 - Movie Suggestions
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # Getting Started with Create React App
 
