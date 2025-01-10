@@ -6,7 +6,8 @@
 .pnp.js
 
 # folder
-src/utils/firebase.js
+
+
 
 
 # testing
@@ -14,7 +15,6 @@ src/utils/firebase.js
 
 # production
 /build
-
 # misc
 .DS_Store
 .env.local

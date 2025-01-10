@@ -45,14 +45,12 @@ const Header = () => {
         navigate("/");
       }
     });
-    return ()=> unsubscribe;
+    return () => unsubscribe;
   }, []);
 
   return (
     <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black to-transparent z-30 flex justify-between">
-      <div>
-        <img className="w-44 " src={LOGO} alt="logo" />
-      </div>
+      <img className="w-44 " src={LOGO} alt="logo" />
 
       {user && (
         <div className=" flex">

@@ -11,8 +11,10 @@
  - created sign Up Account
  - Implement Sign In user api
  - created Redux store
+ - Implemented Sign out
+ - Update profile 
  - BugFix:- when user Sign Up, it won't update the displayName and photoURL
- - BugFix:- it went to browse page without Sign In and login page without Sign Out.
+ - BugFix:- if user not logged In then redirect /browse page to login and login page and vice-versa.
  - unsubscribe to onAuthStateChanged when it unmounts
  - constants URL puts in one constants.js file
  
