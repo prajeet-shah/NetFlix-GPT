@@ -33,7 +33,8 @@
 - TMDB image CDN URL
 - made the browser page amazing with tailwind css
 - created useplayingNOw , usepopularMovies, useTopRatedMovies, useUpcomingMovies custom hook
-- Gpt Search functionality
+- Creating Gpt Search functionality
+- adding multi language feature
 
 # Features
 
@@ -45,7 +46,7 @@
   - Tailer in Background
   - Title & Description
   - Movie Suggestions
-  - Movielists * N
+  - Movielists \* N
 - NetFlix GPT
 - Search Bar
 - Movie Suggestions

@@ -1,12 +1,22 @@
 import React from "react";
-import FirstPart from "./FirstPart";
+import GptSearchBox from "./GptSearchBox";
+import GptMovieSuggestions from "./GptMovieSuggestions";
+import { BACKGROUND_IMAGE } from "../utils/constants";
 
 const GptSearch = () => {
   return (
-    <div className="absolute">
-      
-      <div className="mt-52">
-      <h1>GptSearch</h1>
+    <div className="relative ">
+      <div className="absolute">
+        <img 
+          className=""
+          src={BACKGROUND_IMAGE}
+          alt="background_image"
+        />
+      </div>
+      <div className="relative z-20">
+        <GptSearchBox />
+        <GptMovieSuggestions />
+        
       </div>
     </div>
   );
