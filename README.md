@@ -34,7 +34,9 @@
 - made the browser page amazing with tailwind css
 - created useplayingNOw , usepopularMovies, useTopRatedMovies, useUpcomingMovies custom hook
 - Creating Gpt Search functionality
+- Gpt search page
 - adding multi language feature
+- platform.openai.com
 
 # Features
 
