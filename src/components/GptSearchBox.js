@@ -24,7 +24,8 @@ const GptSearchBox = () => {
 
   const handleGptSearchClick = async () => {
     console.log(searchText.current.value);
-    const client = new HfInference(YI_34B_CHAT_ACCESS_TOKEN);
+    const client = new HfInference(process.env.
+REACT_APP_YI_34B_CHAT_ACCESS_TOKEN);
 
     const query =
       "acts as a movie recommedation system and suggest some movies for the query : " +
