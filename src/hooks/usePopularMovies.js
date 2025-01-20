@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import { options} from "../utils/constants";
-import { useDispatch } from "react-redux";
+import { options } from "../utils/constants";
+import { useDispatch, useSelector } from "react-redux";
 import { addPopularMovies } from "../utils/movieSlice";
 
 const usePopularMovies = () => {
+  const popularMovies = useSelector((store) => store.movies.PopularMovies);
   const dispatch = useDispatch();
   const getPopularMovies = async () => {
     let data = await fetch(
@@ -16,7 +17,8 @@ const usePopularMovies = () => {
   };
 
   useEffect(() => {
-    getPopularMovies();
+    // Memoization technique
+    if (!popularMovies) getPopularMovies();
   }, []);
 };
 

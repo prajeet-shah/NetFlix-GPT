@@ -37,6 +37,7 @@
 - Gpt search page
 - adding multi language feature
 - platform.openai.com
+- Memoization Technique to reduce the number of API calls
 
 # Features
 
