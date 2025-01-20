@@ -37,7 +37,13 @@
 - Gpt search page
 - adding multi language feature
 - platform.openai.com
+- gpt search API calls
+- fetched getMovieSuggestions from TMDB
+- created gptSlice added data
+- Reused Movie List components to make movie suggestions container
+- Added .env file
 - Memoization Technique to reduce the number of API calls
+- made our site Responsive
 
 # Features
 

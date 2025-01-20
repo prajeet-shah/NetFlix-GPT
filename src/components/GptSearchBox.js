@@ -60,19 +60,19 @@ REACT_APP_YI_34B_CHAT_ACCESS_TOKEN);
   };
 
   return (
-    <div className="pt-60 mx-80 w-3/4">
+    <div className="md:pt-60 md:mx-80 pt-52 w:full md:w-3/4">
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="bg-black grid grid-cols-4 gap-4 p-5"
+        className="bg-black grid grid-cols-4 gap-4 md:p-5 p-2"
       >
         <input
           ref={searchText}
           type="text"
-          className="col-span-3 px-8 py-4 rounded-lg"
+          className="col-span-3 md:px-8 px-2 py-4 rounded-lg"
           placeholder={lang[langKey].SearchPlaceholder}
         />
         <button
-          className="col-span-1 px-10 py-4 bg-red-600 text-white rounded-lg text-2xl"
+          className="col-span-1 md:px-10 py-4 bg-red-600 text-white rounded-lg md:text-2xl text-lg"
           onClick={handleGptSearchClick}
         >
           {lang[langKey].search}
