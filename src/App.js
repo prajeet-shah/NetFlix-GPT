@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
     <Provider store = {appStore} >
-     <Body/> 
+     <Body /> 
      </Provider>
     </div>
   );
