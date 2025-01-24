@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import Header from "./Header";
 import { Validate } from "../utils/Validate";
 import {
   createUserWithEmailAndPassword,
@@ -102,9 +101,10 @@ const Login = () => {
 
   return (
     <div>
-      <Header />
+      {/*<Header />*/}
       <div className="absolute">
-        <img className="h-screen object-cover md:h-auto"
+        <img
+          className="h-screen object-cover md:h-auto"
           src={BACKGROUND_IMAGE}
           alt="background_image"
         />

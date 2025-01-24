@@ -44,7 +44,7 @@
 - Added .env file
 - Memoization Technique to reduce the number of API calls
 - made our site Responsive
-
+- making Nested Routing for Header available to everypage
 # Features
 
 - Login/Signup Form
