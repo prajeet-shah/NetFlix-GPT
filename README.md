@@ -45,6 +45,8 @@
 - Memoization Technique to reduce the number of API calls
 - made our site Responsive
 - making Nested Routing for Header available to everypage
+- Creating a dynamic routing to make the movie card clickable
+
 # Features
 
 - Login/Signup Form

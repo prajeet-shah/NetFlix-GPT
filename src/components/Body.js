@@ -2,6 +2,7 @@ import Login from "./Login";
 import Browse from "./Browse";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
 import Header from "./Header";
+import MovieDetails from "./MovieDetails";
 
 const Body = () => {
   const AppLayout = () => {
@@ -25,6 +26,10 @@ const Body = () => {
         {
           path: "/browse",
           element: <Browse />,
+        },
+        {
+          path: "/browse/movie/:movieId",
+          element: <MovieDetails />,
         },
       ],
     },
