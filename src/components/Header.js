@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
@@ -66,21 +66,27 @@ const Header = () => {
 
       {user && (
         <div className=" flex">
-        {gptSearchView && <select
-          className="w-28 h-10 rounded-lg bg-gray-700 px-4 mx-3 my-5 py-1 text-white"
-          onChange={handleLanguageChange}
-        >
-          {SUPPORTED_LANGUAGES.map((language) => (
-            <option key={language.identifier} value={language.identifier}>
-              {language.name}
-            </option>
-          ))}
-        </select>}
+          {gptSearchView && (
+            <select
+              className="w-28 h-10 rounded-lg bg-gray-700 px-4 mx-3 my-5 py-1 text-white"
+              onChange={handleLanguageChange}
+            >
+              {SUPPORTED_LANGUAGES.map((language) => (
+                <option key={language.identifier} value={language.identifier}>
+                  {language.name}
+                </option>
+              ))}
+            </select>
+          )}
           <button
             className="px-4 mx-3 my-4 h-12 bg-purple-800 text-white font-bold rounded-lg text-lg"
             onClick={handleToggleGptSearch}
           >
-            {gptSearchView ? "Home page" : "Gpt Search"}
+            {gptSearchView ? (
+              <Link to={"/browse"}> Home page</Link>
+            ) : (
+              <Link to={"/browse"}>Gpt Search</Link>
+            )}
           </button>
           <img className="w-12 h-12 mt-4" alt="userIcon" src={user?.photoURL} />
           <button
