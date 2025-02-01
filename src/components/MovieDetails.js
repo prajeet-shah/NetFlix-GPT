@@ -17,9 +17,9 @@ const MovieDetails = () => {
 
     let json = await data.json();
 
-    console.log(json.results[0]);
+    // console.log(json.results[0]);
     const { original_title, overview, id } = json?.results[0];
-    console.log(id);
+    // console.log(id);
     setId(id);
     setTitle(original_title);
     setOverview(overview);
@@ -35,14 +35,14 @@ const MovieDetails = () => {
         throw new Error(`HTTP error! status: ${data.status}`);
       }
       let json = await data.json();
-      console.log(json.results);
+      // console.log(json.results);
 
       const fetchData = json.results.filter(
         (movie) => movie.type === "Trailer"
       );
       const trailer = fetchData[0];
-      console.log(trailer);
-      console.log(trailer.key);
+      // console.log(trailer);
+      // console.log(trailer.key);
       setKey(trailer.key);
     } catch (error) {
       console.error("Failed to fetch movie video:", error);

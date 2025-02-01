@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import lang from "../utils/LanuageConstants";
 import { useDispatch, useSelector } from "react-redux";
 import { HfInference } from "@huggingface/inference";
-import { options, YI_34B_CHAT_ACCESS_TOKEN } from "../utils/constants";
+import { options} from "../utils/constants";
 import { addGptMovieResults } from "../utils/gptSlice";
 
 const GptSearchBox = () => {

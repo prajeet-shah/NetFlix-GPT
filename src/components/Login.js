@@ -47,7 +47,7 @@ const Login = () => {
             .then(() => {
               const { uid, email, password, displayName, photoURL } =
                 auth.currentUser;
-              console.log(auth);
+              // console.log(auth);
 
               dispatch(
                 addUser({
