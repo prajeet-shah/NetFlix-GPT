@@ -26,61 +26,54 @@ const MovieDetails = () => {
     year: "numeric",
   });
 
-  useEffect(() => {
-    const tmdbMovieSearch = (movieName) => {
-      fetch(
-        `https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&page=1`,
+  const tmdbMovieSearch = async (movieName) => {
+    let data = await fetch(
+      `https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&page=1`,
+      options
+    );
+
+    let json = await data.json();
+
+    // console.log(json.results[0]);
+    const { original_title, overview, id, poster_path, release_date } =
+      json?.results[0];
+    // console.log(id);
+    setId(id);
+    dispatch(addRecommendedMoviesId(id));
+    setTitle(original_title);
+    setOverview(overview);
+    setPoster(poster_path);
+    setReleaseDate(release_date);
+  };
+
+  const getMovieVideo = async (id) => {
+    try {
+      let data = await fetch(
+        `https://api.themoviedb.org/3/movie/${id}/videos?`,
         options
-      )
-        .then((response) => response.json())
-        .then((json) => {
-          if (json.results && json.results.length > 0) {
-            const { original_title, overview, id, poster_path, release_date } =
-              json.results[0];
+      );
+      if (!data.ok) {
+        throw new Error(`HTTP error! status: ${data.status}`);
+      }
+      let json = await data.json();
+      // console.log(json.results);
 
-            dispatch(addRecommendedMoviesId(id));
-            setId(id);
-            setTitle(original_title);
-            setOverview(overview);
-            setPoster(poster_path);
-            setReleaseDate(release_date);
-          }
-        })
-        .catch((error) =>
-          console.error("Failed to fetch movie details:", error)
-        );
-    };
-
-    if (movieName) {
-      tmdbMovieSearch(movieName);
+      const fetchData = json.results.filter(
+        (movie) => movie.type === "Trailer"
+      );
+      const trailer = fetchData[0];
+      // console.log(trailer);
+      // console.log(trailer.key);
+      setKey(trailer.key);
+    } catch (error) {
+      console.error("Failed to fetch movie video:", error);
     }
-  }, [movieName]);
+  };
 
   useEffect(() => {
-    const getMovieVideo = (id) => {
-      fetch(`https://api.themoviedb.org/3/movie/${id}/videos?`, options)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then((json) => {
-          const fetchData = json.results.filter(
-            (movie) => movie.type === "Trailer"
-          );
-
-          if (fetchData.length > 0) {
-            setKey(fetchData[0].key);
-          }
-        })
-        .catch((error) => console.error("Failed to fetch movie video:", error));
-    };
-
-    if (id) {
-      getMovieVideo(id);
-    }
-  }, [id]);
+    tmdbMovieSearch(movieName);
+    getMovieVideo(id);
+  }, [movieName, id]);
 
   return (
     <>
