@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { LOGO } from "../utils/constants";
-import { addToggleGptView } from "../utils/gptSlice";
+import { addToggleGptView, clearMovies } from "../utils/gptSlice";
 import { SUPPORTED_LANGUAGES } from "../utils/constants";
 import { changeLanguage } from "../utils/configSlice";
 
@@ -18,6 +18,7 @@ const Header = () => {
 
   const handleToggleGptSearch = () => {
     dispatch(addToggleGptView());
+    dispatch(clearMovies());
   };
 
   const handleLanguageChange = (e) => {
