@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import lang from "../utils/LanuageConstants";
 import { useDispatch, useSelector } from "react-redux";
 import { HfInference } from "@huggingface/inference";
-import { options} from "../utils/constants";
+import { options } from "../utils/constants";
 import { addGptMovieResults } from "../utils/gptSlice";
 
 const GptSearchBox = () => {
@@ -23,9 +23,10 @@ const GptSearchBox = () => {
   };
 
   const handleGptSearchClick = async () => {
-    console.log(searchText.current.value);
-    const client = new HfInference(process.env.
-REACT_APP_YI_34B_CHAT_ACCESS_TOKEN);
+    // console.log(searchText.current.value);
+    const client = new HfInference(
+      process.env.REACT_APP_YI_34B_CHAT_ACCESS_TOKEN
+    );
 
     const query =
       "acts as a movie recommedation system and suggest some movies for the query : " +
@@ -45,14 +46,14 @@ REACT_APP_YI_34B_CHAT_ACCESS_TOKEN);
       setOutput(newContent);
     }
 
-    console.log(output);
+    // console.log(output);
     if (!output) return;
 
     const promiseArray = output.map((movie) => searchMovieTmdb(movie));
     //it will return [promise, promise , promise , promise, promise]
 
     const tmdbResults = await Promise.all(promiseArray);
-    console.log(tmdbResults);
+    // console.log(tmdbResults);
 
     dispatch(
       addGptMovieResults({ movieName: output, movieResults: tmdbResults })
