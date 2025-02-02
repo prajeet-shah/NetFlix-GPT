@@ -77,7 +77,7 @@ const MovieDetails = () => {
 
   return (
     <>
-      <div className="md:bg-gray-300 pt-40 md:pt-0 bg-black">
+      <div className=" pt-40 md:pt-0 bg-black">
         <div className="">
           <iframe
             className="w-full aspect-video bg-gradient-to-r from-black"
