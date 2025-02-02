@@ -27,24 +27,40 @@ const MovieDetails = () => {
   });
 
   const tmdbMovieSearch = async (movieName) => {
-    let data = await fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&page=1`,
-      options
-    );
-
-    let json = await data.json();
-
-    // console.log(json.results[0]);
-    const { original_title, overview, id, poster_path, release_date } =
-      json?.results[0];
-    // console.log(id);
-    setId(id);
-    dispatch(addRecommendedMoviesId(id));
-    setTitle(original_title);
-    setOverview(overview);
-    setPoster(poster_path);
-    setReleaseDate(release_date);
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&page=1`,
+        options
+      );
+  
+      // Check if the response is okay (status 200-299)
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const json = await response.json();
+  
+      // Check if results exist and are not empty
+      if (!json.results || json.results.length === 0) {
+        throw new Error("No movie found!");
+      }
+  
+      // Extract movie data safely
+      const { original_title, overview, id, poster_path, release_date } = json.results[0];
+  
+      // Update state
+      setId(id);
+      dispatch(addRecommendedMoviesId(id));
+      setTitle(original_title);
+      setOverview(overview);
+      setPoster(poster_path);
+      setReleaseDate(release_date);
+    } catch (error) {
+      console.error("Fetch error:", error.message);
+      alert(`Error fetching movie: ${error.message}`); // Optional: Show an alert to the user
+    }
   };
+  
 
   const getMovieVideo = async (id) => {
     try {
@@ -81,7 +97,7 @@ const MovieDetails = () => {
         <div className="">
           <iframe
             className="w-full aspect-video bg-gradient-to-r from-black"
-            src={`https://www.youtube.com/embed/${key}?si=a9OMK15-rt-wS7Qn&=1&controls=0`}
+            src={`https://www.youtube.com/embed/${key}?si=a9OMK15-rt-wS7Qn&=1&controls=1`}
             title="YouTube video player"
           ></iframe>
         </div>
