@@ -69,7 +69,7 @@ const Header = () => {
         <div className=" flex justify-end">
           {gptSearchView && (
             <select
-              className="md:w-28 w-22 h-10 rounded-lg bg-gray-700 px-4 mx-1 my-5 py-1 text-white md:text-[16px] text-[11.5px]"
+              className="md:w-28 w-22 h-10 rounded-lg bg-gray-700 px-4 md:mx-2 mx-1 my-5 py-1 text-white md:text-[16px] text-[11.5px]"
               onChange={handleLanguageChange}
             >
               {SUPPORTED_LANGUAGES.map((language) => (
@@ -80,7 +80,7 @@ const Header = () => {
             </select>
           )}
           <button
-            className="px-4 mx-1 my-4 h-12  bg-purple-800 text-white font-bold rounded-lg md:text-lg text-[11.5px]"
+            className="px-4 mx-1 md:mx-3 my-4 h-12  bg-purple-800 text-white font-bold rounded-lg md:text-lg text-[11.5px]"
             onClick={handleToggleGptSearch}
           >
             {gptSearchView ? (
