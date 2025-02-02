@@ -66,7 +66,7 @@ const Header = () => {
       <img className="w-44 mx-auto md:mx-0" src={LOGO} alt="logo" />
 
       {user && (
-        <div className=" flex">
+        <div className=" flex justify-end">
           {gptSearchView && (
             <select
               className="w-28 h-10 rounded-lg bg-gray-700 px-4 mx-3 my-5 py-1 text-white"
@@ -80,7 +80,7 @@ const Header = () => {
             </select>
           )}
           <button
-            className="px-4 mx-3 my-4 h-12 bg-purple-800 text-white font-bold rounded-lg text-lg"
+            className="px-4 mx-3 my-4 md:h-12 h-9  bg-purple-800 text-white font-bold rounded-lg md:text-lg text-sm"
             onClick={handleToggleGptSearch}
           >
             {gptSearchView ? (
@@ -89,9 +89,9 @@ const Header = () => {
               <Link to={"/browse"}>Gpt Search</Link>
             )}
           </button>
-          <img className="w-12 h-12 mt-4" alt="userIcon" src={user?.photoURL} />
+          <img className="md:w-12 md:h-12 w-10 h-10 mt-4 mx-1 md:mx-0" alt="userIcon" src={user?.photoURL} />
           <button
-            className="font-bold text-xl text-white p-2"
+            className="font-bold md:text-xl text-sm text-white md:p-2"
             onClick={handleSignOut}
           >
             Sign Out

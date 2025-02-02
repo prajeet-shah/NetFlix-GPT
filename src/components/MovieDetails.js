@@ -77,19 +77,19 @@ const MovieDetails = () => {
 
   return (
     <>
-      <div className="bg-gray-300">
-        <div>
+      <div className="md:bg-gray-300 pt-40 md:pt-0 bg-black">
+        <div className="">
           <iframe
             className="w-full aspect-video bg-gradient-to-r from-black"
             src={`https://www.youtube.com/embed/${key}?si=a9OMK15-rt-wS7Qn&=1&controls=0`}
             title="YouTube video player"
           ></iframe>
         </div>
-        <div className="py-6 mx-10 flex items-center my-4 bg-black ">
+        <div className="py-6 mx-10  md:flex md:items-center my-4 bg-black ">
           <div className="w-44 mx-2">
             <img src={IMAGE_URL + poster} alt="movie_poster" />
           </div>
-          <div className="w-1/2 ">
+          <div className="md:w-1/2 w-full ">
             <h1 className="text-2xl font-bold mx-4 my-2 text-white">{title}</h1>
             <h2 className="text-md font-semibold mx-4 my-1 text-white">
               {overview}

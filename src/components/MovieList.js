@@ -5,7 +5,7 @@ import { Link } from "react-router";
 const MovieList = ({ title, Movies }) => {
   return (
     <div>
-      <h1 className="mx-4 p-2 text-lg md:text-3xl">{title}</h1>
+      <h1 className="mx-4 p-2 text-lg font-bold md:text-3xl">{title}</h1>
       <div className="flex overflow-x-scroll overflow-y-hidden  mx-4 scrollbar-hide ">
         <div className="flex ">
           {Movies.map((movie) => (
