@@ -8,9 +8,9 @@ import { addRecommendedMoviesId } from "../utils/movieSlice";
 
 const MovieDetails = () => {
   const { movieName } = useParams();
+  const [movieId, setMovieId] = useState(null);
   const [title, setTitle] = useState(null);
   const [overview, setOverview] = useState(null);
-  const [id, setId] = useState(null);
   const [key, setKey] = useState(null);
   const [poster, setPoster] = useState(null);
   const [releaseDate, setReleaseDate] = useState(null);
@@ -32,25 +32,28 @@ const MovieDetails = () => {
         `https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&page=1`,
         options
       );
-  
+
       // Check if the response is okay (status 200-299)
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-  
+
       const json = await response.json();
-  
+
       // Check if results exist and are not empty
       if (!json.results || json.results.length === 0) {
         throw new Error("No movie found!");
       }
-  
+
       // Extract movie data safely
-      const { original_title, overview, id, poster_path, release_date } = json.results[0];
-  
+      const { original_title, overview, id, poster_path, release_date } =
+        json.results[0];
+
+      // console.log(id);
       // Update state
-      setId(id);
+      setMovieId(id);
       dispatch(addRecommendedMoviesId(id));
+      // console.log(movieId);
       setTitle(original_title);
       setOverview(overview);
       setPoster(poster_path);
@@ -60,12 +63,12 @@ const MovieDetails = () => {
       alert(`Error fetching movie: ${error.message}`); // Optional: Show an alert to the user
     }
   };
-  
 
-  const getMovieVideo = async (id) => {
+  const getMovieVideo = async (movieId) => {
+    // console.log(movieId);
     try {
       let data = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/videos?`,
+        `https://api.themoviedb.org/3/movie/${movieId}/videos?`,
         options
       );
       if (!data.ok) {
@@ -88,8 +91,8 @@ const MovieDetails = () => {
 
   useEffect(() => {
     tmdbMovieSearch(movieName);
-    getMovieVideo(id);
-  }, [movieName, id]);
+    getMovieVideo(movieId);
+  }, [movieName, movieId]);
 
   return (
     <>
@@ -117,7 +120,7 @@ const MovieDetails = () => {
         </div>
 
         <div>
-          <RecommendationMovies />
+          <RecommendationMovies movieId = {movieId} />
         </div>
       </div>
     </>

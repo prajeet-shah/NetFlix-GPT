@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import VideoTitle from "./VideoTitle";
 import VideoBackground from "./VideoBackground";
 import { useSelector } from "react-redux";
 
 const MainContainer = () => {
   const movies = useSelector((store) => store.movies.nowPlayingMovies);
-  // console.log(movies);
-  if (!movies) return;
+  const [randomNumber, setRandomNumber] = useState(null);
 
-  const randomNumber = Math.floor(Math.random() * 20);
+  useEffect(() => {
+    if (movies && movies.length > 0 && randomNumber === null) {
+      const number = Math.floor(Math.random() * movies.length);
+      setRandomNumber(number);
+    }
+  }, [movies, randomNumber]);
 
-  const playingMovie = movies[randomNumber];
+  const playingMovie = useMemo(() => {
+    if (randomNumber === null || !movies || movies.length === 0) return null;
+    return movies[randomNumber];
+  }, [randomNumber, movies]);
+
   // console.log(playingMovie);
+  if (!playingMovie) return null;
+
   const { original_title, overview, id } = playingMovie;
 
   return (

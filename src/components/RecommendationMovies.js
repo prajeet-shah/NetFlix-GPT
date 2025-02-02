@@ -1,16 +1,34 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+
 import MovieList from "./MovieList";
 
-const RecommendationMovies = () => {
-  const recommendedMovies = useSelector(
-    (store) => store.movies.recomendedMovies
-  );
+import { options } from "../utils/constants";
 
-  if (!recommendedMovies) return;
+const RecommendationMovies = ({ movieId }) => {
+  const [movieResult, setMovieResult] = useState(null);
+
+  // console.log(movieId);
+
+  const recomendedMovies = async () => {
+    let data = await fetch(
+      "https://api.themoviedb.org/3/movie/" +
+        movieId +
+        "/recommendations?&page=1",
+      options
+    );
+    let json = await data.json();
+
+    setMovieResult(json.results);
+  };
+
+  useEffect(() => {
+    recomendedMovies();
+  }, [movieId]);
+
+  if (!movieResult) return;
   return (
     <div>
-      <MovieList title={"Recommended Movies"} Movies={recommendedMovies} />
+      <MovieList title={"Recommended Movies"} Movies={movieResult} />
     </div>
   );
 };
