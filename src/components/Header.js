@@ -69,7 +69,7 @@ const Header = () => {
         <div className=" flex justify-end">
           {gptSearchView && (
             <select
-              className="md:w-28 w-22 h-10 rounded-lg bg-gray-700 px-4 mx-2 my-5 py-1 text-white md:text-[16px] text-[10px]"
+              className="md:w-28 w-22 h-10 rounded-lg bg-gray-700 px-4 mx-1 my-5 py-1 text-white md:text-[16px] text-[11.5px]"
               onChange={handleLanguageChange}
             >
               {SUPPORTED_LANGUAGES.map((language) => (
@@ -80,7 +80,7 @@ const Header = () => {
             </select>
           )}
           <button
-            className="px-4 mx-2 my-4 h-12  bg-purple-800 text-white font-bold rounded-lg md:text-lg text-[10px]"
+            className="px-4 mx-1 my-4 h-12  bg-purple-800 text-white font-bold rounded-lg md:text-lg text-[11.5px]"
             onClick={handleToggleGptSearch}
           >
             {gptSearchView ? (
@@ -95,7 +95,7 @@ const Header = () => {
             src={user?.photoURL}
           />
           <button
-            className="font-bold md:text-xl text-[10px] text-white md:p-2"
+            className="font-bold md:text-xl text-[11.5px] text-white md:p-2"
             onClick={handleSignOut}
           >
             Sign Out
