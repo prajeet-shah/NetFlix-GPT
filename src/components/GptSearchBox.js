@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { HfInference } from "@huggingface/inference";
 import { options } from "../utils/constants";
 import { addGptMovieResults } from "../utils/gptSlice";
+import OpenAI from "openai";
 
 const GptSearchBox = () => {
   const langKey = useSelector((store) => store.config.lang);
@@ -23,41 +24,47 @@ const GptSearchBox = () => {
   };
 
   const handleGptSearchClick = async () => {
-    // console.log(searchText.current.value);
-    const client = new HfInference(
-      process.env.REACT_APP_YI_34B_CHAT_ACCESS_TOKEN
-    );
+    try {
+      const openai = new OpenAI({
+        baseURL: "https://openrouter.ai/api/v1", // OpenRouter endpoint
+        apiKey: process.env.REACT_APP_OPENROUTER_API_KEY,
+        dangerouslyAllowBrowser: true, // Store in .env
+      });
 
-    const query =
-      "acts as a movie recommedation system and suggest some movies for the query : " +
-      searchText.current.value +
-      "only give name of 5 movies in string format, comma separated like the example result given ahead. Example Result: Gadar, sholay, don, heropanti, Golmaal";
+      // Your existing query format
+      const query =
+        "Act as a movie recommendation system and suggest 5 movies for the query: " +
+        searchText.current.value +
+        ". Only return the names as a comma-separated string like this: Gadar, Sholay, Don, Heropanti, Golmaal";
 
-    const response = await client.chatCompletion({
-      model: "01-ai/Yi-1.5-34B-Chat",
-      messages: [{ role: "user", content: query }],
-      temperature: 0.7,
-      max_tokens: 2048,
-      top_p: 0.7,
-    });
+      // Call DeepSeek via OpenRouter (free tier)
+      const response = await openai.chat.completions.create({
+        model: "deepseek/deepseek-chat:free", // Free model
+        messages: [{ role: "user", content: query }],
+        temperature: 0.7,
+        max_tokens: 2048,
+      });
 
-    if (response.choices && response.choices.length > 0) {
-      const newContent = response?.choices[0]?.message?.content?.split(",");
-      setOutput(newContent);
+      // Process response (same as your original code)
+      if (response.choices?.[0]?.message?.content) {
+        const newContent = response.choices[0].message.content.split(",");
+        setOutput(newContent);
+      }
+
+      // Your existing TMDB integration
+      if (!output) return;
+      const promiseArray = output.map((movie) => searchMovieTmdb(movie));
+      const tmdbResults = await Promise.all(promiseArray);
+
+      dispatch(
+        addGptMovieResults({ movieName: output, movieResults: tmdbResults })
+      );
+    } catch (error) {
+      console.error("API Error:", error);
+      alert(
+        "Failed to fetch recommendations. You may have hit the free tier limit."
+      );
     }
-
-    // console.log(output);
-    if (!output) return;
-
-    const promiseArray = output.map((movie) => searchMovieTmdb(movie));
-    //it will return [promise, promise , promise , promise, promise]
-
-    const tmdbResults = await Promise.all(promiseArray);
-    // console.log(tmdbResults);
-
-    dispatch(
-      addGptMovieResults({ movieName: output, movieResults: tmdbResults })
-    );
   };
 
   return (

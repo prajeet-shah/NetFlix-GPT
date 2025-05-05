@@ -5,6 +5,7 @@ import Header from "./Header";
 import MovieDetails from "./MovieDetails";
 
 const Body = () => {
+  
   const AppLayout = () => {
     return (
       <div>
